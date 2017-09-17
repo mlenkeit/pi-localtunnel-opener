@@ -1,0 +1,20 @@
+{
+  "name": "pi-localtunnel-opener",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Warning: no test specified yet\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlenkeit/pi-localtunnel-opener.git"
+  },
+  "keywords": [],
+  "author": "Maximilian Lenkeit",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mlenkeit/pi-localtunnel-opener/issues"
+  },
+  "homepage": "https://github.com/mlenkeit/pi-localtunnel-opener#readme"
+}
