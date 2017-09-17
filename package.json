@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint lib test",
     "test": "echo \"Warning: no test specified yet\""
   },
   "repository": {
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/mlenkeit/pi-localtunnel-opener/issues"
   },
-  "homepage": "https://github.com/mlenkeit/pi-localtunnel-opener#readme"
+  "homepage": "https://github.com/mlenkeit/pi-localtunnel-opener#readme",
+  "devDependencies": {
+    "eslint": "4.7.0"
+  }
 }
