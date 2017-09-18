@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint lib test",
-    "test": "echo \"Warning: no test specified yet\""
+    "test": "npm run test:unit && npm run test:system",
+    "test:unit": "mocha test/unit --recursive",
+    "test:system": "mocha test/system --recursive --timeout=10000",
+    "testrunner": "mocha test --recursive --watch"
   },
   "repository": {
     "type": "git",
@@ -19,6 +22,17 @@
   },
   "homepage": "https://github.com/mlenkeit/pi-localtunnel-opener#readme",
   "devDependencies": {
-    "eslint": "4.7.0"
+    "chai": "4.1.2",
+    "eslint": "4.7.0",
+    "eslint-plugin-mocha": "4.11.0",
+    "mocha": "3.5.3",
+    "sinon": "3.2.1",
+    "sinon-chai": "2.13.0"
+  },
+  "dependencies": {
+    "check-types": "7.3.0",
+    "commander": "2.11.0",
+    "localtunnel": "1.8.3",
+    "winston": "2.3.1"
   }
 }

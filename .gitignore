@@ -57,3 +57,6 @@ typings/
 # dotenv environment variables file
 .env
 
+# generated fixtures
+test/fixture/sample-cb-result.txt
+
