@@ -1,9 +1,12 @@
 'use strict';
 
+const async = require('async');
 const exec = require('child_process').exec;
 const expect = require('chai').expect;
 const fs = require('fs');
+const kill = require('tree-kill');
 const path = require('path');
+const request = require('request');
 const url = require('url');
 
 const startSystem = function(tunnelConfigFilepath) {
@@ -29,6 +32,19 @@ const wait = function(timeout) {
 describe('System Test', function() {
   
   beforeEach(function() {
+    this.cps = [];
+  });
+  
+  afterEach(function(done) {
+    async.each(this.cps, function(cp, cb) {
+      var pid = cp.pid;
+      kill(pid, 'SIGKILL', function(/*err*/) {
+        cb();
+      });
+    }, done);
+  });
+  
+  beforeEach(function() {
     this.filepath = path.resolve(__dirname, './../fixture/sample-cb-result.txt');
     try {
       fs.unlinkSync(this.filepath);
@@ -36,7 +52,8 @@ describe('System Test', function() {
       // nothing
     }
     
-    return startSystem('./test/fixture/config.js');
+    return startSystem('./test/fixture/config.js')
+      .then(cp => this.cps.push(cp));
   });
   
   it('calls the configured callback function', function() {
@@ -46,6 +63,16 @@ describe('System Test', function() {
         const content = fs.readFileSync(this.filepath).toString();
         const urlObj = url.parse(content);
         expect(urlObj.hostname).to.contain('localtunnel.me');
+      });
+  });
+  
+  it('starts a webserver on the specified port (only for pm2)', function(done) {
+    request(`http://localhost:${process.env.PORT}`,
+      (err, response) => {
+        expect(err, 'err').to.equal(null);
+        expect(response)
+          .to.have.property('statusCode', 200);
+        done();
       });
   });
 });

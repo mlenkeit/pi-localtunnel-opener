@@ -1,6 +1,7 @@
 'use strict';
 
 const check = require('check-types');
+const http = require('http');
 const program = require('commander');
 const winston = require('winston');
 
@@ -10,6 +11,7 @@ program
   .parse(process.argv);
 
 check.assert.string(program.tunnelConfigFilepath, '--tunnel-config-filepath argument missing');
+check.assert.string(process.env.PORT, 'PORT environment variable missing');
 
 const tunnelConfig = require(program.tunnelConfigFilepath)
   .map(tunnelConfig => {
@@ -25,4 +27,11 @@ require('./lib/index')({
   tunnelConfig: tunnelConfig
 });
 
-winston.log('info', 'Started pi-localtunnel-opener');
+// create server for pm2
+const server = http.createServer((req, res) => {
+  res.writeHead(200);
+  res.end();
+});
+server.listen(process.env.PORT, () => {
+  winston.log('info', 'Started pi-localtunnel-opener');
+});
