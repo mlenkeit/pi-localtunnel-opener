@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dab:post-checkout": "npm install --production",
     "lint": "eslint lib test",
     "test": "npm run test:unit && npm run test:system",
     "test:unit": "mocha test/unit --recursive",
