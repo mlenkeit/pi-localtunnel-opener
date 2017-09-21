@@ -5,6 +5,8 @@ const http = require('http');
 const program = require('commander');
 const winston = require('winston');
 
+const noop = () => {};
+
 program
   .version('0.1.0')
   .option('-c, --tunnel-config-filepath [filepath]', 'Filepath to tunnel config')
@@ -15,8 +17,8 @@ check.assert.string(process.env.PORT, 'PORT environment variable missing');
 
 const tunnelConfig = require(program.tunnelConfigFilepath)
   .map(tunnelConfig => {
-    const cb = require(tunnelConfig.cbPath);
-    check.assert.function(cb, `Callback for ${tunnelConfig.port} must a function`);
+    const cb = tunnelConfig.cbPath ? require(tunnelConfig.cbPath) : noop;
+    check.assert.maybe.function(cb, `Callback for ${tunnelConfig.port} must a function`);
     return {
       port: tunnelConfig.port,
       cb: cb
