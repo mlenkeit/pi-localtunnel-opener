@@ -25,13 +25,13 @@
   "devDependencies": {
     "async": "2.5.0",
     "chai": "4.1.2",
-    "eslint": "4.7.0",
+    "eslint": "4.7.1",
     "eslint-plugin-mocha": "4.11.0",
     "mocha": "3.5.3",
-    "request": "2.81.0",
-    "sinon": "3.2.1",
+    "request": "2.82.0",
+    "sinon": "3.3.0",
     "sinon-chai": "2.13.0",
-    "tree-kill": "1.1.0"
+    "tree-kill": "1.2.0"
   },
   "dependencies": {
     "check-types": "7.3.0",
