@@ -9,3 +9,6 @@ script:
   - npm run coverage:unit
   - npm run coverage-check
   - npm run test:system
+cache:
+  directories:
+    - node_modules
