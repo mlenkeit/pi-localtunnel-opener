@@ -52,8 +52,8 @@ describe('open-tunnel', function() {
       expect(this.localtunnel).to.be.calledWith(this.port, this.emptyOpts, sinon.match.func);
     });
     
-    it('invokes the callback with the url', function() {
-      expect(this.onOpen).to.be.calledWith(this.localtunnel.tunnel.url);
+    it('invokes the callback with the port and the url', function() {
+      expect(this.onOpen).to.be.calledWith(this.port, this.localtunnel.tunnel.url);
     });
     
     context('when error event is emitted', function() {
@@ -68,8 +68,8 @@ describe('open-tunnel', function() {
         expect(this.localtunnel).to.be.calledWith(this.port, this.emptyOpts, sinon.match.func);
       });
       
-      it('invokes the callback with the url', function() {
-        expect(this.onOpen).to.be.calledWith(this.localtunnel.tunnel.url);
+      it('invokes the callback with the port and the url', function() {
+        expect(this.onOpen).to.be.calledWith(this.port, this.localtunnel.tunnel.url);
       });
     });
     
@@ -85,8 +85,8 @@ describe('open-tunnel', function() {
         expect(this.localtunnel).to.be.calledWith(this.port, this.emptyOpts, sinon.match.func);
       });
       
-      it('invokes the callback with the url', function() {
-        expect(this.onOpen).to.be.calledWith(this.localtunnel.tunnel.url);
+      it('invokes the callback with the port and the url', function() {
+        expect(this.onOpen).to.be.calledWith(this.port, this.localtunnel.tunnel.url);
       });
     });
   });
